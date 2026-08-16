@@ -1,4 +1,4 @@
-//! Wasm frontend for textify. Everything runs in the browser, no uploads.
+//! Wasm frontend for glypher. Everything runs in the browser, no uploads.
 #![warn(clippy::pedantic)]
 
 mod app;

@@ -34,12 +34,12 @@ jobs:
         with:
           toolchain: stable
       - run: cargo test --workspace --locked
-      - run: cargo package -p textify -p textify-cli --locked
+      - run: cargo package -p glypher -p glypher-cli --locked
       - name: Authenticate with crates.io
         id: crates_io_auth
         uses: rust-lang/crates-io-auth-action@1a6a6213fc40463948b2c5791665943b6f911792 # v1.0.5
-      # textify-cli depends on textify, so the library has to land first.
+      # glypher-cli depends on glypher, so the library has to land first.
       - name: Publish to crates.io
         env:
           CARGO_REGISTRY_TOKEN: ${{ steps.crates_io_auth.outputs.token }}
-        run: cargo publish -p textify -p textify-cli --locked
+        run: cargo publish -p glypher -p glypher-cli --locked

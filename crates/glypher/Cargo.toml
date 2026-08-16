@@ -1,11 +1,11 @@
 [package]
-name                   = "textify"
+name                   = "glypher"
 version.workspace      = true
 authors.workspace      = true
 edition.workspace      = true
 rust-version.workspace = true
 description            = "Convert images to ascii art"
-documentation          = "https://docs.rs/textify"
+documentation          = "https://docs.rs/glypher"
 readme                 = "README.md"
 homepage.workspace     = true
 repository.workspace   = true

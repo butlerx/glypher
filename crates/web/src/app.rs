@@ -13,7 +13,7 @@ pub fn App() -> impl IntoView {
     view! {
         <main>
             <header>
-                <h1>"textify"</h1>
+                <h1>"glypher"</h1>
                 <p>"Turn an image into ascii art. Runs entirely in your browser."</p>
             </header>
 

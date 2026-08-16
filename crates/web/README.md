@@ -1,10 +1,10 @@
 # web
 
-A wasm frontend for [`textify`](../textify), built with
+A wasm frontend for [`glypher`](../glypher), built with
 [Leptos](https://leptos.dev) and [Trunk](https://trunkrs.dev). Drop an image in,
 get ascii art out. The image never leaves the browser — there is no server.
 
-Deployed to <https://butlerx.github.io/textify/> by
+Deployed to <https://butlerx.github.io/glypher/> by
 [`.github/workflows/pages.yml`](../../.github/workflows/pages.yml) on every
 push to `main`.
 

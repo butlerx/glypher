@@ -1,16 +1,16 @@
-# textify
+# glypher
 
 > Every project needs a logo, so why not an ascii one.
 
-[![CI](https://github.com/butlerx/textify/actions/workflows/ci.yml/badge.svg)](https://github.com/butlerx/textify/actions/workflows/ci.yml)
-[![Deploy Site](https://github.com/butlerx/textify/actions/workflows/pages.yml/badge.svg)](https://github.com/butlerx/textify/actions/workflows/pages.yml)
-[![crates.io](https://img.shields.io/crates/v/textify.svg)](https://crates.io/crates/textify)
+[![CI](https://github.com/butlerx/glypher/actions/workflows/ci.yml/badge.svg)](https://github.com/butlerx/glypher/actions/workflows/ci.yml)
+[![Deploy Site](https://github.com/butlerx/glypher/actions/workflows/pages.yml/badge.svg)](https://github.com/butlerx/glypher/actions/workflows/pages.yml)
+[![crates.io](https://img.shields.io/crates/v/glypher.svg)](https://crates.io/crates/glypher)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 A Rust rewrite of [asciify](https://github.com/butlerx/asciify). Converts PNG and
 JPEG images into ascii art, from the command line or in the browser.
 
-**[Try it in your browser →](https://butlerx.github.io/textify/)**
+**[Try it in your browser →](https://butlerx.github.io/glypher/)**
 
 ## Demo
 
@@ -18,7 +18,7 @@ _Before_
 
 ![CoderDojo Octocat](./octocat.png)
 
-_After_ — `textify --print octocat.png`
+_After_ — `glypher --print octocat.png`
 
 ```
            :,            ~*~:                                          :~==
@@ -81,25 +81,25 @@ _After_ — `textify --print octocat.png`
 
 | Crate                            | What it is                                            |
 | -------------------------------- | ----------------------------------------------------- |
-| [`textify`](crates/textify)         | The conversion library. No io, no network, wasm ready. |
-| [`textify-cli`](crates/textify-cli) | The `textify` command line tool.                       |
+| [`glypher`](crates/glypher)         | The conversion library. No io, no network, wasm ready. |
+| [`glypher-cli`](crates/cli) | The `glypher` command line tool.                       |
 | [`web`](crates/web)                 | A wasm frontend built with Leptos and Trunk.           |
 
 ## Install
 
 ```sh
-cargo install textify-cli
+cargo install glypher-cli
 ```
 
 ## Usage
 
 ```sh
-textify --print octocat.png                 # write the art to stdout
-textify octocat.png                         # save it as ./octocat.txt
-textify --path docs octocat.png             # save it as docs/octocat.txt
-textify --width 200 octocat.png             # wider output, more detail
-textify --readme README.md octocat.png      # inject it into a readme
-textify https://example.com/logo.png        # fetch a remote image
+glypher --print octocat.png                 # write the art to stdout
+glypher octocat.png                         # save it as ./octocat.txt
+glypher --path docs octocat.png             # save it as docs/octocat.txt
+glypher --width 200 octocat.png             # wider output, more detail
+glypher --readme README.md octocat.png      # inject it into a readme
+glypher https://example.com/logo.png        # fetch a remote image
 ```
 
 | Flag              | Default           | Description                                     |
@@ -147,11 +147,11 @@ mise run check   # format, lint, wasm target, tests, audit
 | `build` / `b`       | Build the workspace.                           |
 | `run` / `r`         | Run the cli, e.g. `mise run r -- --print octocat.png`. |
 | `dev` / `d`         | Trunk dev server for the frontend.             |
-| `test` / `t`        | `cargo nextest` across the workspace.          |
+| `test` / `t`        | `cargo nextest` across the workspace.           |
 | `format` / `f`      | `cargo fmt` plus `tombi format`.               |
 | `lint`              | Clippy with `-D warnings`.                     |
-| `web:check`         | Type-check the frontend against wasm.          |
-| `check`             | Everything CI runs.                            |
+| `web:check`         | Type-check the frontend against wasm.           |
+| `check`             | Everything CI runs.                              |
 
 `mise tasks` lists them all. Commit messages follow
 [conventional commits](https://www.conventionalcommits.org), enforced by

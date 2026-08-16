@@ -20,7 +20,7 @@ pub enum Error {
     },
 
     #[error(transparent)]
-    Ascii(#[from] textify::Error),
+    Ascii(#[from] glypher::Error),
 
     #[error("could not fetch {url}: {source}")]
     Http {

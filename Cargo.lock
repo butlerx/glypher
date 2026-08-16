@@ -735,6 +735,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "glypher"
+version = "0.1.0"
+dependencies = [
+ "image",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "glypher-cli"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "glypher",
+ "thiserror 2.0.20",
+ "ureq",
+]
+
+[[package]]
 name = "guardian"
 version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1842,24 +1860,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "textify"
-version = "0.1.0"
-dependencies = [
- "image",
- "thiserror 2.0.20",
-]
-
-[[package]]
-name = "textify-cli"
-version = "0.1.0"
-dependencies = [
- "clap",
- "textify",
- "thiserror 2.0.20",
- "ureq",
-]
-
-[[package]]
 name = "thiserror"
 version = "1.0.69"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2188,9 +2188,9 @@ dependencies = [
  "console_error_panic_hook",
  "gloo-file",
  "gloo-net 0.7.0",
+ "glypher",
  "js-sys",
  "leptos",
- "textify",
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",

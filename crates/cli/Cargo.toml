@@ -1,11 +1,11 @@
 [package]
-name                   = "textify-cli"
+name                   = "glypher-cli"
 version.workspace      = true
 authors.workspace      = true
 edition.workspace      = true
 rust-version.workspace = true
-description            = "Command line interface for textify, converts images to ascii art"
-documentation          = "https://docs.rs/textify-cli"
+description            = "Command line interface for glypher, converts images to ascii art"
+documentation          = "https://docs.rs/glypher-cli"
 readme                 = "README.md"
 homepage.workspace     = true
 repository.workspace   = true
@@ -15,11 +15,11 @@ categories             = ["command-line-utilities", "multimedia::images"]
 include                = ["LICENSE", "README.md", "src/**/*.rs"]
 
 [[bin]]
-name = "textify"
+name = "glypher"
 path = "src/main.rs"
 
 [dependencies]
 clap.workspace      = true
-textify.workspace   = true
+glypher.workspace   = true
 thiserror.workspace = true
 ureq.workspace      = true

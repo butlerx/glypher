@@ -6,22 +6,30 @@ const CHARS: &[u8; 17] = b"MND8OZ$7I?*=~:,  ";
 const COLOUR_LEN: u32 = 255;
 
 /// Converts each pixel to grey scale and replaces it with a character of
-/// similar intensity.
+/// similar intensity. Terminal cells are taller than wide, so each character
+/// is followed by a space for proper rendering.
 #[must_use]
 pub fn pixel_to_char(img: &DynamicImage) -> String {
     let (width, height) = img.dimensions();
-    let mut buf = String::with_capacity(((width + 1) * height) as usize);
 
-    for y in 0..height {
-        for x in 0..width {
-            let idx = u32::from(grey(img.get_pixel(x, y).0)) * 16 / COLOUR_LEN;
-            buf.push(CHARS[idx as usize] as char);
-        }
+    (0..(height * (width + 1)))
+        .map(|i| {
+            let row = i / (width + 1);
+            let col = i % (width + 1);
+            if col < width {
+                let x = col;
+                grey_to_char(img, x, row) as char
+            } else {
+                '\n'
+            }
+        })
+        .collect()
+}
 
-        buf.push('\n');
-    }
-
-    buf
+/// Maps a single pixel's greyscale value to its character byte.
+fn grey_to_char(img: &DynamicImage, x: u32, y: u32) -> u8 {
+    let idx = u32::from(grey(img.get_pixel(x, y).0)) * 16 / COLOUR_LEN;
+    CHARS[idx as usize]
 }
 
 /// Rec. 601 luma, using the same integer weights as Go's `color.GrayModel`.

@@ -1,6 +1,6 @@
-# textify-cli
+# glypher-cli
 
-The `textify` command line tool. Wraps [`textify`](../textify) with file and url
+The `glypher` command line tool. Wraps [`glypher`](../glypher) with file and url
 loading, and the two output modes.
 
 ```sh
@@ -10,12 +10,12 @@ cargo install --path .
 ## Usage
 
 ```sh
-textify --print octocat.png                 # write the art to stdout
-textify octocat.png                         # save it as ./octocat.txt
-textify --path docs octocat.png             # save it as docs/octocat.txt
-textify --width 200 octocat.png             # wider output, more detail
-textify --readme README.md octocat.png      # inject it into a readme
-textify https://example.com/logo.png        # fetch a remote image
+glypher --print octocat.png                 # write the art to stdout
+glypher octocat.png                         # save it as ./octocat.txt
+glypher --path docs octocat.png             # save it as docs/octocat.txt
+glypher --width 200 octocat.png             # wider output, more detail
+glypher --readme README.md octocat.png      # inject it into a readme
+glypher https://example.com/logo.png        # fetch a remote image
 ```
 
 | Flag             | Default           | Description                                        |
