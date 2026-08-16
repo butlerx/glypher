@@ -85,14 +85,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "330a5ed07fa54e4702c9d6c4174f74427fc0ef6e214bbd677ae50a5099946470"
 
 [[package]]
-name = "asciify"
-version = "0.1.0"
-dependencies = [
- "image",
- "thiserror 2.0.20",
-]
-
-[[package]]
 name = "async-lock"
 version = "3.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -274,16 +266,6 @@ name = "clap_lex"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c8d4a3bb8b1e0c1050499d1815f5ab16d04f0959b233085fb31653fbfc9d98f9"
-
-[[package]]
-name = "cli"
-version = "0.1.0"
-dependencies = [
- "asciify",
- "clap",
- "thiserror 2.0.20",
- "ureq",
-]
 
 [[package]]
 name = "codee"
@@ -1860,6 +1842,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "textify"
+version = "0.1.0"
+dependencies = [
+ "image",
+ "thiserror 2.0.20",
+]
+
+[[package]]
+name = "textify-cli"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "textify",
+ "thiserror 2.0.20",
+ "ureq",
+]
+
+[[package]]
 name = "thiserror"
 version = "1.0.69"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2185,12 +2185,12 @@ dependencies = [
 name = "web"
 version = "0.1.0"
 dependencies = [
- "asciify",
  "console_error_panic_hook",
  "gloo-file",
  "gloo-net 0.7.0",
  "js-sys",
  "leptos",
+ "textify",
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",

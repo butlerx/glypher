@@ -30,7 +30,7 @@ outputs     = ["target/debug/textify"]
 [tasks."build:release"]
 description = "Build the release cli binary"
 usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo build"'
-run         = "cargo build --release -p cli ${usage_args:-}"
+run         = "cargo build --release -p textify-cli ${usage_args:-}"
 sources     = [
   "Cargo.lock",
   "Cargo.toml",
@@ -58,7 +58,7 @@ dir         = "crates/web"
 run         = "trunk build --release ${usage_args:-}"
 sources     = [
   "Cargo.lock",
-  "crates/asciify/src/**/*.rs",
+  "crates/textify/src/**/*.rs",
   "crates/web/Cargo.toml",
   "crates/web/index.html",
   "crates/web/src/**/*.rs",
@@ -71,7 +71,7 @@ description = "Type-check the frontend against the wasm target"
 run         = "cargo check -p web --target wasm32-unknown-unknown --all-features"
 sources     = [
   "Cargo.lock",
-  "crates/asciify/src/**/*.rs",
+  "crates/textify/src/**/*.rs",
   "crates/web/src/**/*.rs"
 ]
 

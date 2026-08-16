@@ -1,4 +1,4 @@
-# asciify
+# textify
 
 The conversion library behind [textify](../../README.md). Takes an image, gives
 back ascii art. No io, no network, no threads, so it compiles to
@@ -10,7 +10,7 @@ back ascii art. No io, no network, no threads, so it compiles to
 use std::{fs::File, io::BufReader};
 
 let image = BufReader::new(File::open("octocat.png")?);
-let art = asciify::generate(image, 100)?;
+let art = textify::generate(image, 100)?;
 
 println!("{art}");
 ```

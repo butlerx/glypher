@@ -2,8 +2,15 @@
 
 > Every project needs a logo, so why not an ascii one.
 
+[![CI](https://github.com/butlerx/textify/actions/workflows/ci.yml/badge.svg)](https://github.com/butlerx/textify/actions/workflows/ci.yml)
+[![Deploy Site](https://github.com/butlerx/textify/actions/workflows/pages.yml/badge.svg)](https://github.com/butlerx/textify/actions/workflows/pages.yml)
+[![crates.io](https://img.shields.io/crates/v/textify.svg)](https://crates.io/crates/textify)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
 A Rust rewrite of [asciify](https://github.com/butlerx/asciify). Converts PNG and
 JPEG images into ascii art, from the command line or in the browser.
+
+**[Try it in your browser →](https://butlerx.github.io/textify/)**
 
 ## Demo
 
@@ -74,14 +81,14 @@ _After_ — `textify --print octocat.png`
 
 | Crate                            | What it is                                            |
 | -------------------------------- | ----------------------------------------------------- |
-| [`asciify`](crates/asciify) | The conversion library. No io, no network, wasm ready. |
-| [`cli`](crates/cli)         | The `textify` command line tool.                       |
-| [`web`](crates/web)         | A wasm frontend built with Leptos and Trunk.           |
+| [`textify`](crates/textify)         | The conversion library. No io, no network, wasm ready. |
+| [`textify-cli`](crates/textify-cli) | The `textify` command line tool.                       |
+| [`web`](crates/web)                 | A wasm frontend built with Leptos and Trunk.           |
 
 ## Install
 
 ```sh
-cargo install --path crates/cli
+cargo install textify-cli
 ```
 
 ## Usage

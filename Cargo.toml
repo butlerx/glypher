@@ -16,12 +16,12 @@ keywords     = ["art", "ascii", "ascii-art", "image", "logo"]
 categories   = ["multimedia::images"]
 
 [workspace.dependencies]
-asciify   = { path = "crates/asciify" }
 clap      = { version = "4", features = ["derive"] }
 image     = {
   version          = "0.25",
   default-features = false,
   features         = ["jpeg", "png"]
 }
+textify   = { path = "crates/textify", version = "0.1.0" }
 thiserror = "2"
 ureq      = "3"

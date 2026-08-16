@@ -1,11 +1,11 @@
 [package]
-name                   = "asciify"
+name                   = "textify"
 version.workspace      = true
 authors.workspace      = true
 edition.workspace      = true
 rust-version.workspace = true
 description            = "Convert images to ascii art"
-documentation          = "https://docs.rs/asciify"
+documentation          = "https://docs.rs/textify"
 readme                 = "README.md"
 homepage.workspace     = true
 repository.workspace   = true

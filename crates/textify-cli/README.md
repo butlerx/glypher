@@ -1,6 +1,6 @@
-# cli
+# textify-cli
 
-The `textify` command line tool. Wraps [`asciify`](../asciify) with file and url
+The `textify` command line tool. Wraps [`textify`](../textify) with file and url
 loading, and the two output modes.
 
 ```sh

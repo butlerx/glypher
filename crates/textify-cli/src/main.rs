@@ -1,13 +1,13 @@
 #![warn(clippy::pedantic)]
 
 use crate::error::Error;
-use asciify::generate;
 use clap::Parser;
 use std::{
     env,
     path::{Path, PathBuf},
     process::ExitCode,
 };
+use textify::generate;
 
 mod error;
 mod output;

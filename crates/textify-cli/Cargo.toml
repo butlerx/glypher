@@ -1,10 +1,11 @@
 [package]
-name                   = "cli"
+name                   = "textify-cli"
 version.workspace      = true
 authors.workspace      = true
 edition.workspace      = true
 rust-version.workspace = true
 description            = "Command line interface for textify, converts images to ascii art"
+documentation          = "https://docs.rs/textify-cli"
 readme                 = "README.md"
 homepage.workspace     = true
 repository.workspace   = true
@@ -12,15 +13,13 @@ license.workspace      = true
 keywords               = ["ascii", "ascii-art", "cli", "image", "logo"]
 categories             = ["command-line-utilities", "multimedia::images"]
 include                = ["LICENSE", "README.md", "src/**/*.rs"]
-# The crates.io name `cli` is not publishable; rename before releasing.
-publish                = false
 
 [[bin]]
 name = "textify"
 path = "src/main.rs"
 
 [dependencies]
-asciify.workspace   = true
 clap.workspace      = true
+textify.workspace   = true
 thiserror.workspace = true
 ureq.workspace      = true

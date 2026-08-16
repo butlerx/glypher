@@ -1,0 +1,56 @@
+name: Deploy Site
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+env:
+  CARGO_TERM_COLOR: always
+permissions:
+  contents: read
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+      - name: Cache Dependencies
+        uses: Swatinem/rust-cache@e18b497796c12c097a38f9edb9d0641fb99eee32 # v2
+        with:
+          cache-on-failure: true
+          cache-all-crates: true
+      - uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
+          targets: wasm32-unknown-unknown
+      - name: Install Trunk
+        uses: jetli/trunk-action@2f5f7fc6cd903b31c72b3fa4c26f762bafd67f0e # v0.5.1
+        with:
+          version: 'latest'
+      # The site is served from https://<user>.github.io/<repo>/, so asset urls
+      # need the repository name as a prefix.
+      - name: Build the frontend
+        working-directory: crates/web
+        run: trunk build --release --public-url "/${REPOSITORY_NAME}"
+        env:
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: crates/web/dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

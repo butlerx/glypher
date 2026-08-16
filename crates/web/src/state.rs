@@ -38,7 +38,7 @@ impl State {
         let art = Memo::new(move |_| {
             image.with(|image| match image {
                 None => Ok(String::new()),
-                Some(image) => asciify::generate(Cursor::new(&image.bytes), width.get())
+                Some(image) => textify::generate(Cursor::new(&image.bytes), width.get())
                     .map_err(|err| err.to_string()),
             })
         });
