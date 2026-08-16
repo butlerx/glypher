@@ -1,0 +1,148 @@
+:root {
+  --bg: #ffffff;
+  --fg: #16181d;
+  --muted: #5c6370;
+  --line: #d7dae0;
+  --accent: #2f6feb;
+  --error: #b4243a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161a;
+    --fg: #e6e8ec;
+    --muted: #9aa1ad;
+    --line: #2c3038;
+    --accent: #6ea0ff;
+    --error: #ff8095;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+main {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+}
+
+header p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.dropzone {
+  border: 2px dashed var(--line);
+  border-radius: 0.75rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.dropzone.dragging {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.dropzone p {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+}
+
+.dropzone input[type="file"] {
+  display: none;
+}
+
+.url {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.url input {
+  flex: 1;
+  min-width: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.controls label {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.controls input[type="range"] {
+  flex: 1;
+  min-width: 10rem;
+  accent-color: var(--accent);
+}
+
+.hidden {
+  display: none;
+}
+
+input[type="url"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+}
+
+button,
+.button {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover,
+.button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+pre {
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10px;
+  line-height: 1;
+  white-space: pre;
+}
+
+.error {
+  margin: 0;
+  color: var(--error);
+}

@@ -1,0 +1,12 @@
+[package]
+name              = "asciify"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+description       = "Convert images to ascii art"
+readme            = "README.md"
+license.workspace = true
+
+[dependencies]
+image.workspace     = true
+thiserror.workspace = true

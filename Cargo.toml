@@ -1,0 +1,21 @@
+[workspace]
+resolver = "2"
+members  = ["crates/*"]
+
+[workspace.package]
+version     = "0.1.0"
+authors     = ["Cian Butler <butlerx@notthe.cloud>"]
+edition     = "2024"
+description = "Convert images to ascii art"
+license     = "MIT"
+
+[workspace.dependencies]
+asciify   = { path = "crates/asciify" }
+clap      = { version = "4", features = ["derive"] }
+image     = {
+  version          = "0.25",
+  default-features = false,
+  features         = ["jpeg", "png"]
+}
+thiserror = "2"
+ureq      = "3"

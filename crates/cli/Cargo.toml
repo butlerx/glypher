@@ -1,0 +1,18 @@
+[package]
+name              = "cli"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+description       = "Command line interface for textify"
+readme            = "README.md"
+license.workspace = true
+
+[[bin]]
+name = "textify"
+path = "src/main.rs"
+
+[dependencies]
+asciify.workspace   = true
+clap.workspace      = true
+thiserror.workspace = true
+ureq.workspace      = true
