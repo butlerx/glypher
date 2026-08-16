@@ -5,13 +5,69 @@
 A Rust rewrite of [asciify](https://github.com/butlerx/asciify). Converts PNG and
 JPEG images into ascii art, from the command line or in the browser.
 
-```
-$ textify --print octocat.png
+## Demo
 
+_Before_
+
+![CoderDojo Octocat](./octocat.png)
+
+_After_ — `textify --print octocat.png`
+
+```
            :,            ~*~:                                          :~==
            ~            ~MMMMN87=                                  ~IONMMMM?
            ~,           ZMMMMMMMMNZ=        ,,::::::::,,        ~7DMMMMMMMMN
            :,           NMMMMMMMMMMMDII$ZO8DDDNNNNNNNNNNDD8O$II8MMMMMMMMMMMM=
+           :,          :MMMMMMMMMMNDNNNNNNNNNDDDDDDDNNNNNNMMMMMMNMMMMMMMMMMM?
+           ::          ~MMMMMMMMMNDDDDDDDDDNNNNNNNNNNNNNNNNNNNNNNNNMMMMMMMMMI
+           ,:          ,MMMMMMMMNDDDDDDDDDDDDDDDDDDDDDDDDDDDDNNNNNNNMMMMMMMM*
+           ,~           8NNNNNNNNNNNNNNNNDDDDDDDDDDDDDDDDDDDDDDDNNNNNNNNNNMM,
+            ~,        ,ZDDNNNNNNNNNNNNDNNNNDDDNNNDDDDDDDDDDNNNNNNNNNNNNNNNNN8:
+            ~,       :8NNNNDDDDDDDDDDDDDDDNNNDDDDNNNNNNDDDDDDDDDDDDDDNNNNNNNMN=
+            ::      :DNDDDDDNNNNNNNNNNNNNDDDDDDDDDDDDDDDDDDDDDDDDDDDDDNNNNNNNNM~
+            ,:      ONDDDDDDDDDDDDDDDDDNNNNNNNDDDDDDNNNNNNNNNNNNNNNNNNNNNNNNNNMN,
+            ,~     INDDDDDDDDNNNNNDDDDDDDDDDDDDDDDDNNNNNNNNNNNNNNNNNDDNNNNNNNNNMZ
+             ~,   ,DNDDDNNNNNDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDNNNNNNNN:
+             :,   *NDDNNNDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDNNNNNNNNNNDDDDDDNNNNNNNMI
+             ::   INNNNDDDDDDDDDNNNNNNNNNNNNNNNNNNNNNNNNMMMMMMMNNNNNNNNNDDNNNNNNM7
+             ,~   7MDDDDDDDDDNNNND8OOOOZZOOOOOOOOOOOOOOOOOOOOOOOO8DNNNNNNDNNNNNNN:
+              ~,  :DDDDDDDDDNN87*=~:::::::::::::::::::::::::::::~~=*IONNNNNNNNNNN,
+              ::   ONDDDDDDNN$~:::::::::~~::::::::::::::::::::::~::::~7DNNNNNNNMD
+              ,:   ZNDDDDDDN$::::: ~7I?=~~~:::::::::::::::::~*?77: ::::7NNNNNNNMO
+               ~,  $MDDDDDDD=::::  7$$$$I ,:::::::::::::::, I$$7$7 ,:::~8NNNNNNM7
+               :,  ~DDDDDDN8~:::: ,$77777  :::::::::::::::  77777$, ::::ZNNNNNNM~
+      ,,:::::~:=*~~:ZNDDDDN8=::::  7$77$I ,~:::::::::::::~, I$77$7 ,::::ONNNNNM8:~~~~~~:::::,,,
+~===~~~:::,,,,,:=:::~NDDDDDNI::::: :7$$I, ::::~~====~~::::: ,I$$7: ::::=NNNNNNM*,::,,,,,,,:::~~~===~
+        ,,::~~~~**~~:ZMDDDDN8=::::,  ,,  ~*I$O8DDNNDD8O$I*~,  ,,  :::::ONNNNNM8~~~~~~~~~:::,
+,:~~===~~::,,   ,:    ZMDDDDN8=~~~~~~~*7ODNMMMNNNNNNNNNMMNDO$?~::~~~~~ZNNNNNMD,        ,,::~~~==~~:,
+::,,             =*~   7NNDDDND888DDNNMMNNNDDDDDDNNNDDDDDNNNMMMNDD8DDDNNNNMMZ,                   ,:~
+                 $M7    ~ZNNNDDNNNNNNDDDDDNNNNNNNNNNNNNNNNNDDDNNNNMNNNNMMMO=
+                 :88::,   :IONNNNNDDDNNNNNNNNNNNNDDDNNNNNNNNNNNNNNNMMMMD7~
+                 :DMMM8      :?$8NNMMNNNNDDDDDDDDDDDDDDDNNNNMMMMMMNDZI~
+                 ZMMMMD*         ,=?7ZOODNNNNNNNNNNNNNNNNNNNOOZ7?=:
+                 ,78DNMMZ:             IDNNNNNNNNMMNNMNNNNNN$
+                   :DNNOOO?           ,ODNNDDDDDDNMN87ONDNNDN~
+                    INO$$ZZ?          ?Z$8DNDDDDNNDMI*DMDNOO8$
+                     ,:ZO$$Z$*:,    ,=ZZ$O8DDDNNNNDDDNMNNO$Z8D~
+                       ~$Z$$ZZZ$Z$7$ZZZZZO8ODNNDDDNNNDDNOZZZ8D?
+                         ?ZZ$$$ZZZZZ$$ZZZ8OIDDDDDDDDDDDN77ZZ8D7
+                          ~7OOOZZZZZOOZ$ZDZ?NDDD8DD88DDN7?ZZ8D$
+                            :*I$$ZZ$7$Z$Z8Z~NNNDN8ZNDNNM?IZZODI
+                                     :ZZO8O*NDDDMZ?NDNNMI7OZ8D?
+                                     ~Z$Z8O?NDDNMZ7NDNNM7IZZ8D?
+                                     ~Z$Z8Z*NDDNMZ7NDDNM7?ZZ8D?
+                                     ~ZZO8O~DNDNM7*MDNNM=7OO8DI
+                               ,,,,,,:NMMMD,788DN?~8O8D8,ZMMMM=,,,,,,
+                           ,,,,,,,,, *MMMM8 IZZ8DI~ZZO8O $MMMM7 ,,,,,,,,,
+                        ,,,,,,,,,, ,?MMMMM= $ZO8D=:ZZZ88::NMMMM7: ,,,,,,,,,,
+                       ,,,,,,,,,,,$MMMMNZ= *ZZO87,,*ZZZ8$ :$DMMMMO:,,,,,,,,,,
+                      ,,,,,,,,,,,,*I?*~: ,78O8DD*,,~OOOZDZ: ,~**??,,,,,,,,,,,,
+                      ,,,,,,,,,,,,    ,,,=OOZ$?~,,,,~?7$ZO?,,,    ,,,,,,,,,,,,
+                       ,,,,,,,,,,,,,,,,,,,,,,  ,,,,,,  ,,,,,,,,,,,,,,,,,,,,,,
+                         ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+                           ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+                                ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+                                       ,,,,,,,,,,,,,,,,,,,,,,
 ```
 
 ## Layout
@@ -61,10 +117,8 @@ twice needs the placeholder put back first.
 ## Web frontend
 
 ```sh
-rustup target add wasm32-unknown-unknown
-cd crates/web
-trunk serve            # http://localhost:8080
-trunk build --release  # static files in crates/web/dist
+mise run dev        # trunk serve on http://localhost:8080
+mise run web:build  # static files in crates/web/dist
 ```
 
 Everything runs client side: the image never leaves the browser. Pasting a
@@ -73,14 +127,28 @@ refuse.
 
 ## Development
 
+Toolchain and tasks are managed with [mise](https://mise.jdx.dev). `mise install`
+pulls down Rust with the wasm target, trunk, and the lint tooling.
+
 ```sh
-cargo test --workspace
-cargo clippy --all-features --all-targets -- -D warnings
-cargo build -p web --target wasm32-unknown-unknown
+mise run hooks   # install the prek git hooks, once
+mise run check   # format, lint, wasm target, tests, audit
 ```
 
-Git hooks are managed with [prek](https://prek.j178.dev): `prek install`.
-Commit messages follow [conventional commits](https://www.conventionalcommits.org).
+| Task                | What it does                                  |
+| ------------------- | --------------------------------------------- |
+| `build` / `b`       | Build the workspace.                           |
+| `run` / `r`         | Run the cli, e.g. `mise run r -- --print octocat.png`. |
+| `dev` / `d`         | Trunk dev server for the frontend.             |
+| `test` / `t`        | `cargo nextest` across the workspace.          |
+| `format` / `f`      | `cargo fmt` plus `tombi format`.               |
+| `lint`              | Clippy with `-D warnings`.                     |
+| `web:check`         | Type-check the frontend against wasm.          |
+| `check`             | Everything CI runs.                            |
+
+`mise tasks` lists them all. Commit messages follow
+[conventional commits](https://www.conventionalcommits.org), enforced by
+[prek](https://prek.j178.dev).
 
 ## Differences from asciify
 

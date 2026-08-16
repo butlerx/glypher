@@ -1,11 +1,18 @@
 [package]
-name              = "web"
-version.workspace = true
-authors.workspace = true
-edition.workspace = true
-description       = "Wasm frontend for textify"
-readme            = "README.md"
-license.workspace = true
+name                   = "web"
+version.workspace      = true
+authors.workspace      = true
+edition.workspace      = true
+rust-version.workspace = true
+description            = "Wasm frontend for textify, converts images to ascii art in the browser"
+readme                 = "README.md"
+homepage.workspace     = true
+repository.workspace   = true
+license.workspace      = true
+keywords               = ["ascii", "ascii-art", "image", "leptos", "wasm"]
+categories             = ["multimedia::images", "wasm"]
+# Deployed as static files by trunk, not published to crates.io.
+publish                = false
 
 [dependencies]
 asciify.workspace        = true

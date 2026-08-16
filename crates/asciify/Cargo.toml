@@ -1,11 +1,18 @@
 [package]
-name              = "asciify"
-version.workspace = true
-authors.workspace = true
-edition.workspace = true
-description       = "Convert images to ascii art"
-readme            = "README.md"
-license.workspace = true
+name                   = "asciify"
+version.workspace      = true
+authors.workspace      = true
+edition.workspace      = true
+rust-version.workspace = true
+description            = "Convert images to ascii art"
+documentation          = "https://docs.rs/asciify"
+readme                 = "README.md"
+homepage.workspace     = true
+repository.workspace   = true
+license.workspace      = true
+keywords               = ["art", "ascii", "ascii-art", "image", "wasm"]
+categories             = ["graphics", "multimedia::images", "wasm"]
+include                = ["LICENSE", "README.md", "src/**/*.rs"]
 
 [dependencies]
 image.workspace     = true

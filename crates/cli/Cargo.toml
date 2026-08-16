@@ -1,11 +1,19 @@
 [package]
-name              = "cli"
-version.workspace = true
-authors.workspace = true
-edition.workspace = true
-description       = "Command line interface for textify"
-readme            = "README.md"
-license.workspace = true
+name                   = "cli"
+version.workspace      = true
+authors.workspace      = true
+edition.workspace      = true
+rust-version.workspace = true
+description            = "Command line interface for textify, converts images to ascii art"
+readme                 = "README.md"
+homepage.workspace     = true
+repository.workspace   = true
+license.workspace      = true
+keywords               = ["ascii", "ascii-art", "cli", "image", "logo"]
+categories             = ["command-line-utilities", "multimedia::images"]
+include                = ["LICENSE", "README.md", "src/**/*.rs"]
+# The crates.io name `cli` is not publishable; rename before releasing.
+publish                = false
 
 [[bin]]
 name = "textify"

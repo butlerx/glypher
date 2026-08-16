@@ -3,11 +3,17 @@ resolver = "2"
 members  = ["crates/*"]
 
 [workspace.package]
-version     = "0.1.0"
-authors     = ["Cian Butler <butlerx@notthe.cloud>"]
-edition     = "2024"
-description = "Convert images to ascii art"
-license     = "MIT"
+version      = "0.1.0"
+authors      = ["Cian Butler <butlerx@notthe.cloud>"]
+edition      = "2024"
+rust-version = "1.85"
+description  = "Convert images to ascii art"
+readme       = "README.md"
+homepage     = "https://github.com/butlerx/textify"
+repository   = "https://github.com/butlerx/textify"
+license      = "MIT"
+keywords     = ["art", "ascii", "ascii-art", "image", "logo"]
+categories   = ["multimedia::images"]
 
 [workspace.dependencies]
 asciify   = { path = "crates/asciify" }

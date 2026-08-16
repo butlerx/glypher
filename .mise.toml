@@ -1,0 +1,129 @@
+[tools]
+rust                     = { version = "stable", profile = "default", components = "rust-analyzer", targets = "wasm32-unknown-unknown" }
+prek                     = "latest"
+tombi                    = "latest"
+zizmor                   = "latest"
+"cargo:cargo-binstall"   = "latest"
+"cargo:cargo-audit"      = "latest"
+"cargo:cargo-nextest"    = "latest"
+"cargo:trunk"            = "latest"
+"cargo:wasm-bindgen-cli" = "latest"
+
+[settings]
+experimental   = true
+lockfile       = true
+cargo.binstall = true
+
+[tasks.build]
+description = "Build the cli and the library"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo build"'
+run         = "cargo build ${usage_args:-}"
+alias       = "b"
+sources     = [
+  "Cargo.lock",
+  "Cargo.toml",
+  "crates/*/Cargo.toml",
+  "crates/*/src/**/*.rs"
+]
+outputs     = ["target/debug/textify"]
+
+[tasks."build:release"]
+description = "Build the release cli binary"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo build"'
+run         = "cargo build --release -p cli ${usage_args:-}"
+sources     = [
+  "Cargo.lock",
+  "Cargo.toml",
+  "crates/*/Cargo.toml",
+  "crates/*/src/**/*.rs"
+]
+outputs     = ["target/release/textify"]
+
+[tasks.run]
+description = "Run the cli"
+usage       = 'arg "[args]" var=#true help="Arguments passed to textify, e.g. --print octocat.png"'
+run         = "cargo run -q --bin textify -- ${usage_args:-}"
+alias       = "r"
+
+[tasks.dev]
+description = "Start the wasm frontend with hot-reload"
+dir         = "crates/web"
+run         = "trunk serve"
+alias       = "d"
+
+[tasks."web:build"]
+description = "Build the wasm frontend into crates/web/dist"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to trunk build"'
+dir         = "crates/web"
+run         = "trunk build --release ${usage_args:-}"
+sources     = [
+  "Cargo.lock",
+  "crates/asciify/src/**/*.rs",
+  "crates/web/Cargo.toml",
+  "crates/web/index.html",
+  "crates/web/src/**/*.rs",
+  "crates/web/style.css",
+]
+outputs     = ["crates/web/dist/"]
+
+[tasks."web:check"]
+description = "Type-check the frontend against the wasm target"
+run         = "cargo check -p web --target wasm32-unknown-unknown --all-features"
+sources     = [
+  "Cargo.lock",
+  "crates/asciify/src/**/*.rs",
+  "crates/web/src/**/*.rs"
+]
+
+[tasks.test]
+description = "Run tests"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo nextest"'
+run         = "cargo nextest run --workspace --all-features ${usage_args:-}"
+alias       = "t"
+sources     = [
+  "Cargo.lock",
+  "Cargo.toml",
+  "crates/*/Cargo.toml",
+  "crates/*/src/**/*.rs"
+]
+
+[tasks.lint]
+description = "Lint code with clippy"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo clippy"'
+run         = "cargo clippy --workspace --all-targets --all-features ${usage_args:-} -- -D warnings"
+
+[tasks."lint:fix"]
+description = "Fix lint issues"
+usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo clippy"'
+run         = "cargo clippy --fix --workspace --all-targets --all-features --allow-staged ${usage_args:-} -- -D warnings"
+
+[tasks.format]
+description = "Format Rust and TOML"
+run         = ["cargo fmt --all", "tombi format"]
+alias       = "f"
+sources     = ["crates/*/src/**/*.rs", "Cargo.toml", "crates/*/Cargo.toml"]
+
+[tasks."format:check"]
+description = "Check Rust and TOML formatting"
+run         = ["cargo fmt --all --check", "tombi format --check"]
+sources     = ["crates/*/src/**/*.rs", "Cargo.toml", "crates/*/Cargo.toml"]
+
+[tasks.audit]
+description = "Audit dependencies for known vulnerabilities"
+run         = "cargo audit"
+
+[tasks.check]
+description = "Run all checks (format, lint, wasm, test, audit)"
+depends     = ["format:check", "lint", "web:check", "test", "audit"]
+
+[tasks."check:actions"]
+description = "Lint GitHub Actions workflows"
+run         = "zizmor --no-progress .github"
+
+[tasks.hooks]
+description = "Install the prek git hooks"
+run         = "prek install --install-hooks"
+
+[tasks.clean]
+description = "Clean build artifacts"
+run         = "rm -rf target crates/web/dist"
