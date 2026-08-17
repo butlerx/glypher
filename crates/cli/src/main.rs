@@ -2,12 +2,12 @@
 
 use crate::error::Error;
 use clap::Parser;
+use glypher::generate;
 use std::{
     env,
     path::{Path, PathBuf},
     process::ExitCode,
 };
-use glypher::generate;
 
 mod error;
 mod output;
@@ -78,7 +78,9 @@ enum OutputAction {
 
 impl OutputAction {
     fn from_cli(cli: &Cli) -> Self {
-        if let Some(readme) = &cli.readme { Self::InjectReadme(readme.clone()) } else {
+        if let Some(readme) = &cli.readme {
+            Self::InjectReadme(readme.clone())
+        } else {
             let dir = env::current_dir()
                 .map_err(|src| Error::Cwd { source: src })
                 .unwrap_or_else(|_| env::current_dir().expect("cannot recover cwd"));
