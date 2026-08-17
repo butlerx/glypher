@@ -1,4 +1,4 @@
 {
   "crates/glypher": "0.1.0",
-  "crates/cli": "0.1.0"
+  "crates/cli": "0.2.0"
 }
