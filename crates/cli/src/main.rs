@@ -1,5 +1,3 @@
-#![warn(clippy::pedantic)]
-
 use crate::error::Error;
 use clap::Parser;
 use glypher::generate;

@@ -1,5 +1,4 @@
 //! Convert images to ascii art.
-#![warn(clippy::pedantic)]
 
 mod error;
 mod pixel2char;

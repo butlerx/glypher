@@ -25,3 +25,10 @@ ureq      = "3"
 version          = "0.25"
 default-features = false
 features         = ["jpeg", "png"]
+
+[workspace.lints.clippy]
+all      = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+
+[workspace.lints.rust]
+unsafe_code = "deny"

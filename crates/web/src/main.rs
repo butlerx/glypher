@@ -1,5 +1,4 @@
 //! Wasm frontend for glypher. Everything runs in the browser, no uploads.
-#![warn(clippy::pedantic)]
 
 mod app;
 mod export;
