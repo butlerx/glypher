@@ -1,7 +1,7 @@
 [tools]
 rust                     = { version = "stable", profile = "default", components = "rust-analyzer", targets = "wasm32-unknown-unknown" }
 prek                     = "latest"
-tombi                    = "1.2.5"
+tombi                    = "1.11.2"
 zizmor                   = "latest"
 "cargo:cargo-binstall"   = "latest"
 "cargo:cargo-audit"      = "latest"
@@ -19,24 +19,14 @@ description = "Build the cli and the library"
 usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo build"'
 run         = "cargo build ${usage_args:-}"
 alias       = "b"
-sources     = [
-  "Cargo.lock",
-  "Cargo.toml",
-  "crates/*/Cargo.toml",
-  "crates/*/src/**/*.rs"
-]
+sources     = ["Cargo.lock", "Cargo.toml", "crates/*/Cargo.toml", "crates/*/src/**/*.rs"]
 outputs     = ["target/debug/textify"]
 
 [tasks."build:release"]
 description = "Build the release cli binary"
 usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo build"'
 run         = "cargo build --release -p glypher-cli ${usage_args:-}"
-sources     = [
-  "Cargo.lock",
-  "Cargo.toml",
-  "crates/*/Cargo.toml",
-  "crates/*/src/**/*.rs"
-]
+sources     = ["Cargo.lock", "Cargo.toml", "crates/*/Cargo.toml", "crates/*/src/**/*.rs"]
 outputs     = ["target/release/glypher"]
 
 [tasks.run]
@@ -69,23 +59,14 @@ outputs     = ["crates/web/dist/"]
 [tasks."web:check"]
 description = "Type-check the frontend against the wasm target"
 run         = "cargo check -p web --target wasm32-unknown-unknown --all-features"
-sources     = [
-  "Cargo.lock",
-  "crates/glypher/src/**/*.rs",
-  "crates/web/src/**/*.rs"
-]
+sources     = ["Cargo.lock", "crates/glypher/src/**/*.rs", "crates/web/src/**/*.rs"]
 
 [tasks.test]
 description = "Run tests"
 usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo nextest"'
 run         = "cargo nextest run --workspace --all-features ${usage_args:-}"
 alias       = "t"
-sources     = [
-  "Cargo.lock",
-  "Cargo.toml",
-  "crates/*/Cargo.toml",
-  "crates/*/src/**/*.rs"
-]
+sources     = ["Cargo.lock", "Cargo.toml", "crates/*/Cargo.toml", "crates/*/src/**/*.rs"]
 
 [tasks.lint]
 description = "Lint code with clippy"
@@ -101,12 +82,12 @@ run         = "cargo clippy --fix --workspace --all-targets --all-features --all
 description = "Format Rust and TOML"
 run         = ["cargo fmt --all", "tombi format"]
 alias       = "f"
-sources     = ["crates/*/src/**/*.rs", "Cargo.toml", "crates/*/Cargo.toml"]
+sources     = ["crates/*/src/**/*.rs", "Cargo.toml", "crates/*/Cargo.toml", "*.toml", ".yamlfmt.yaml", ".editorconfig"]
 
 [tasks."format:check"]
 description = "Check Rust and TOML formatting"
 run         = ["cargo fmt --all --check", "tombi format --check"]
-sources     = ["crates/*/src/**/*.rs", "Cargo.toml", "crates/*/Cargo.toml"]
+sources     = ["crates/*/src/**/*.rs", "Cargo.toml", "crates/*/Cargo.toml", "*.toml", ".yamlfmt.yaml", ".editorconfig"]
 
 [tasks.audit]
 description = "Audit dependencies for known vulnerabilities"
@@ -122,7 +103,7 @@ run         = "zizmor --no-progress .github"
 
 [tasks.hooks]
 description = "Install the prek git hooks"
-run         = "prek install --install-hooks"
+run         = "prek install --install-hooks --hook-type pre-commit --hook-type commit-msg"
 
 [tasks.clean]
 description = "Clean build artifacts"
