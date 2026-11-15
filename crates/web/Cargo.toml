@@ -37,3 +37,6 @@ features = [
   "Navigator",
   "Url",
 ]
+
+[lints]
+workspace = true

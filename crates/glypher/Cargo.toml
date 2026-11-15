@@ -17,3 +17,6 @@ include                = ["LICENSE", "README.md", "src/**/*.rs"]
 [dependencies]
 image.workspace     = true
 thiserror.workspace = true
+
+[lints]
+workspace = true
