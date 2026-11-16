@@ -6,7 +6,6 @@ edition.workspace      = true
 rust-version.workspace = true
 description            = "Wasm frontend for glypher, converts images to ascii art in the browser"
 readme                 = "README.md"
-homepage.workspace     = true
 repository.workspace   = true
 license.workspace      = true
 keywords               = ["ascii", "ascii-art", "image", "leptos", "wasm"]
