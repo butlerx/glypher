@@ -21,7 +21,7 @@ usage       = 'arg "[args]" var=#true help="Additional arguments passed to cargo
 run         = "cargo build ${usage_args:-}"
 alias       = "b"
 sources     = ["Cargo.lock", "Cargo.toml", "crates/*/Cargo.toml", "crates/*/src/**/*.rs"]
-outputs     = ["target/debug/textify"]
+outputs     = ["target/debug/glypher"]
 
 [tasks."build:release"]
 description = "Build the release cli binary"

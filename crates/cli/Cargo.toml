@@ -7,7 +7,6 @@ rust-version.workspace = true
 description            = "Command line interface for glypher, converts images to ascii art"
 documentation          = "https://docs.rs/glypher-cli"
 readme                 = "README.md"
-homepage.workspace     = true
 repository.workspace   = true
 license.workspace      = true
 keywords               = ["ascii", "ascii-art", "cli", "image", "logo"]
