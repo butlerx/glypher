@@ -14,8 +14,12 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    # This is a two-package manifest, so release-please reports per path:
+    # `release_created` is only set for a root (".") package.
     outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
+      releases_created: ${{ steps.release.outputs.releases_created }}
+      lib_released: ${{ steps.release.outputs['crates/glypher--release_created'] }}
+      cli_released: ${{ steps.release.outputs['crates/cli--release_created'] }}
     steps:
       - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         id: release
@@ -24,7 +28,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: release-please
-    if: needs.release-please.outputs.release_created == 'true'
+    if: needs.release-please.outputs.releases_created == 'true'
     permissions:
       contents: read
       id-token: write
@@ -36,12 +40,18 @@ jobs:
         with:
           toolchain: stable
       - run: cargo test --workspace --locked
-      - run: cargo package -p glypher -p glypher-cli --locked
       - name: Authenticate with crates.io
         id: crates_io_auth
         uses: rust-lang/crates-io-auth-action@3268eb413133e2960fa4ae0e963ca76380c54cd9 # v1.0.6
-      # glypher-cli depends on glypher, so the library has to land first.
+      # Publish only the crates release-please just released. cargo orders a
+      # multi-package publish by dependency, so the library lands before the CLI.
       - name: Publish to crates.io
         env:
           CARGO_REGISTRY_TOKEN: ${{ steps.crates_io_auth.outputs.token }}
-        run: cargo publish -p glypher -p glypher-cli --locked
+          LIB_RELEASED: ${{ needs.release-please.outputs.lib_released }}
+          CLI_RELEASED: ${{ needs.release-please.outputs.cli_released }}
+        run: |-
+          pkgs=()
+          if [ "$LIB_RELEASED" = true ]; then pkgs+=(-p glypher); fi
+          if [ "$CLI_RELEASED" = true ]; then pkgs+=(-p glypher-cli); fi
+          cargo publish "${pkgs[@]}" --locked
