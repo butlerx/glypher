@@ -16,7 +16,7 @@ publish                = false
 [dependencies]
 console_error_panic_hook = "0.1"
 gloo-file                = { version = "0.4", features = ["futures"] }
-gloo-net                 = { version = "0.7", features = ["http"] }
+gloo-net                 = { version = "0.8", features = ["http"] }
 glypher.workspace        = true
 js-sys                   = "0.3"
 leptos                   = { version = "0.8", features = ["csr"] }
